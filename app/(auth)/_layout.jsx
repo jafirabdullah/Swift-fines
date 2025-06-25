@@ -1,34 +1,83 @@
-import { Redirect, Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-
-import { Loader } from "../../components";
-import { useGlobalContext } from "../../context/GlobalProvider";
+import { Stack } from 'expo-router';
 
 const AuthLayout = () => {
-  const { loading, isLogged } = useGlobalContext();
-
-  if (!loading && isLogged) return <Redirect href="/home" />;
-
   return (
-    <>
-      <Stack>
-        <Stack.Screen
-          name="sign-in"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="sign-up"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack>
+    <Stack>
+      <Stack.Screen 
+        name="public-login"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="admin-login"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="public-register"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="home"
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="admin-home"
+        options={{ headerShown: false }}
+      />      
+      <Stack.Screen 
+      name="add-laws"
+      options={{ headerShown: false }}
+    />
+      <Stack.Screen 
+      name="traffic-laws"
+      options={{ headerShown: false }}
+    />
+          <Stack.Screen 
+      name="Profile"
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen 
+    name="EmergencyNumbers"
+    options={{ headerShown: false }} />
 
-      <Loader isLoading={loading} />
-      <StatusBar backgroundColor="#161622" style="light" />
-    </>
+    <Stack.Screen
+    name='TrafficFines'
+    options={{ headerShown: false }} />
+
+    <Stack.Screen 
+    name='Search'
+    options={{ headerShown:false }}
+    />
+
+    <Stack.Screen 
+    name='FineHistory'
+    options={{ headerShown:false }}
+    />
+    <Stack.Screen 
+    name='MyFines'
+    options={{ headerShown:false }}
+    />
+    <Stack.Screen 
+    name='AllFines'
+    options={{ headerShown:false }}
+    />
+        <Stack.Screen 
+    name='add-rules'
+    options={{ headerShown:false }}
+    />
+      <Stack.Screen 
+    name='Notifications'
+    options={{ headerShown:false }}
+    />
+          <Stack.Screen 
+    name='PaymentScreen'
+    options={{ headerShown:false }}
+    />
+          <Stack.Screen 
+    name='ReceiptScreen'
+    options={{ headerShown:false }}
+    />
+    </Stack>
+    
   );
 };
 

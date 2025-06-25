@@ -1,69 +1,67 @@
 import { StatusBar } from "expo-status-bar";
-import { Redirect, router } from "expo-router";
-import { View, Text, Image, ScrollView } from "react-native";
+import {
+  Button,
+  Image,
+  ScrollView,
+  Text,
+  View,
+  ImageBackground,
+  Dimensions,
+} from 'react-native';
+import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { StripeProvider } from '@stripe/stripe-react-native';
+import { STRIPE_PUBLISHABLE_KEY } from '../config';
 import { images } from "../constants";
-import { CustomButton, Loader } from "../components";
-import { useGlobalContext } from "../context/GlobalProvider";
+import CustomButton from "../components/CustomButton";
+import CustomButton3 from "../components/CustomButton3";
 
-const Welcome = () => {
-  const { loading, isLogged } = useGlobalContext();
+const { width, height } = Dimensions.get('window');
 
-  if (!loading && isLogged) return <Redirect href="/home" />;
-
+export default function App() {
   return (
-    <SafeAreaView className="bg-primary h-full">
-      <Loader isLoading={loading} />
-
-      <ScrollView
-        contentContainerStyle={{
-          height: "100%",
-        }}
+    <StripeProvider publishableKey={STRIPE_PUBLISHABLE_KEY}>
+      <ImageBackground
+        source={images.background}
+        resizeMode="cover"
+        style={{ flex: 1 }}
       >
-        <View className="w-full flex justify-center items-center h-full px-4">
-          <Image
-            source={images.logo}
-            className="w-[130px] h-[84px]"
-            resizeMode="contain"
-          />
-
-          <Image
-            source={images.cards}
-            className="max-w-[380px] w-full h-[298px]"
-            resizeMode="contain"
-          />
-
-          <View className="relative mt-5">
-            <Text className="text-3xl text-white font-bold text-center">
-              Discover Endless{"\n"}
-              Possibilities with{" "}
-              <Text className="text-secondary-200">Aora</Text>
-            </Text>
-
-            <Image
-              source={images.path}
-              className="w-[136px] h-[15px] absolute -bottom-2 -right-8"
-              resizeMode="contain"
-            />
-          </View>
-
-          <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">
-            Where Creativity Meets Innovation: Embark on a Journey of Limitless
-            Exploration with Aora
-          </Text>
-
-          <CustomButton
-            title="Continue with Email"
-            handlePress={() => router.push("/sign-in")}
-            containerStyles="w-full mt-7"
-          />
-        </View>
-      </ScrollView>
-
-      <StatusBar backgroundColor="#161622" style="light" />
-    </SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 20 }}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <Image
+                source={images.logo}
+                style={{ width: width * 0.4, height: height * 0.1, marginBottom: 20 }}
+                resizeMode="contain"
+              />
+              <Image
+                source={images.cards}
+                style={{ width: width * 0.7, height: height * 0.12, marginBottom: 20 }}
+                resizeMode="contain"
+              />
+              <CustomButton
+                title="PUBLIC LOGIN"
+                handlePress={() => router.push('/public-login')}
+                containerStyles={{ width: '100%', marginTop: 28 }}
+              />
+              <CustomButton
+                title="ADMIN LOGIN"
+                handlePress={() => router.push('/admin-login')}
+                containerStyles={{ width: '100%', marginTop: 28 }}
+              />
+              <CustomButton3
+                title="SOS"
+                handlePress={() => router.push('/sos')}
+                containerStyles={{ width: '100%', marginTop: 28 }}
+              />
+              <Text style={{ marginTop: 40, textAlign: 'center', color: 'white', fontSize: 14 }}>
+                Real-Time Traffic Violation and Fine Management System
+              </Text>
+            </View>
+          </ScrollView>
+          <StatusBar backgroundColor='#161622' style='light' />
+        </SafeAreaView>
+      </ImageBackground>
+    </StripeProvider>
   );
-};
-
-export default Welcome;
+}
