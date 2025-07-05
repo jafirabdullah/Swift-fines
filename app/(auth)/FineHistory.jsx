@@ -75,9 +75,11 @@ const FineHistory = () => {
       <Text style={styles.fineTitle}>Reference Number: {item.referenceNumber}</Text>
       <Text>License ID: {item.licenseId}</Text>
       <Text>Fine Details: {item.fineDetails.title}</Text>
-      {item.fineDetails.fines.map((fine, index) => (
+      {Array.isArray(item.fineDetails.fines) &&
+      item.fineDetails.fines.map((fine, index) => (
         <Text key={index}>- {fine}</Text>
       ))}
+
       <Text>Action: {item.action}</Text>
     </TouchableOpacity>
   );
