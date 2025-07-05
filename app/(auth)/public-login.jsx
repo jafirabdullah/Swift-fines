@@ -138,9 +138,9 @@ const PublicLogin = () => {
 
           {/* Branding */}
           <View style={{ alignItems: 'center', marginBottom: 10 }}>
-            <Text style={{ fontSize: 18, fontWeight: '700', color: '#2C2C6C' }}>SRI LANKA</Text>
-            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2C6C' }}>TRAFFIC GUARD</Text>
-            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2C2C6C' }}>PRO</Text>
+            <Text style={{ fontSize: 18, fontWeight: '700', color: '#2C2C6C' }}>Srilanka</Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#2C2C6C' }}>Swift Fines</Text>
+            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2C2C6C' }}></Text>
           </View>
 
           <Text style={{
